@@ -5,4 +5,5 @@
 ```
 htmx_files/chxx     -- htmx 文件
 src/chxx            -- 以章为单位实现的服务端
+mvhtmx-code.zip     -- 随书源码
 ```
