@@ -4,3 +4,11 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.102"
+arc-swap = "1.9.1"
+axum = "0.8.9"
+num_cpus = "1.17.0"
+serde = { version = "1.0.228", features = ["derive"] }
+tokio = { version = "1.52.3", features = ["rt-multi-thread", "macros", "time", "net", "signal"] }
+tower-http = { version = "0.6.11", features = ["fs"] }
+uuid = { version = "1.23.2", features = ["serde", "v7"] }

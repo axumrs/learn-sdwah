@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXUM: Server-Driven Web Apps with htmx</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.min.css"
+    />
+  </head>
+  <body>
+    <main class="continer mx-auto max-w-sm my-6 space-y-6">
+      <h1 class="text-xl font-bold">狗子</h1>
+      <form
+        autocomplete="off"
+        class="form grid gap-6"
+        hx-post="/api/ch01/dog"
+        hx-disabled-elt="#add-btn"
+        hx-target="table tbody"
+        hx-swap="afterbegin"
+        hx-on:htmx:after-request="this.reset()"
+      >
+        <div class="space-y-2">
+          <label for="name">名字</label>
+          <input type="text" id="name" name="name" />
+        </div>
+        <div class="space-y-2">
+          <label for="name">品种</label>
+          <input type="text" id="breed" name="breed" />
+        </div>
+
+        <div>
+          <button type="submit" class="btn" id="add-btn">添加</button>
+        </div>
+      </form>
+
+      <div class="overflow-x-auto my-6">
+        <table
+          class="table"
+          hx-trigger="revealed"
+          hx-get="/api/ch01/table-rows"
+          hx-target="tbody"
+        >
+          <thead>
+            <tr>
+              <th>名字</th>
+              <th>品牌</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script
+      src="https://lib.axum.eu.org/htmx/2.0.10/htmx.min.js"
+      defer
+    ></script>
+    <script
+      src="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.all.min.js"
+      defer
+    ></script>
+  </body>
+</html>
