@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXUM: Server-Driven Web Apps with htmx</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.min.css"
+    />
+    <script>
+      function handleEvent1(event) {
+        const { value } = event.detail;
+        alert("拿到 event1 的值: " + value);
+      }
+      function handleEvent2(event) {
+        const { value } = event.detail;
+        alert("拿到 event2 的值: " + JSON.stringify(value));
+      }
+      function handleEvent3(event) {
+        const { detail } = event;
+        // console.log(detail); // {foo:1, bar:2, elt: btn.htmx-request}
+        // detail.elt 维护了触发请求的元素的引用
+        delete detail.elt;
+        alert("拿到 event3 的数据: " + JSON.stringify(detail));
+      }
+    </script>
+  </head>
+  <body
+    class="p-6"
+    hx-on:event1="handleEvent1(event)"
+    hx-on:event2="handleEvent2(event)"
+    hx-on:event3="handleEvent3(event)"
+  >
+    <button
+      class="btn"
+      hx-get="/api/ch03/event-with-no-data"
+      hx-target="#content"
+    >
+      触发无数据事件（event1）
+    </button>
+    <button
+      class="btn"
+      hx-get="/api/ch03/event-with-string"
+      hx-target="#content"
+    >
+      触发字符串数据事件（event2）
+    </button>
+    <button
+      class="btn"
+      hx-get="/api/ch03/event-with-object"
+      hx-target="#content"
+    >
+      触发对象数据事件（event3）
+    </button>
+    <div id="content"></div>
+    <script
+      src="https://lib.axum.eu.org/htmx/2.0.10/htmx.min.js"
+      defer
+    ></script>
+    <script
+      src="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.all.min.js"
+      defer
+    ></script>
+  </body>
+</html>

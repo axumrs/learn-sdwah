@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXUM: Server-Driven Web Apps with htmx</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.min.css"
+    />
+  </head>
+  <body class="p-6">
+    <div class="flex flex-col gap-6 continer mx-auto max-w-md">
+      <a
+        href="/ch03_developing_endpoints/oob.html"
+        class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
+      >
+        <div class="flex flex-1 flex-col gap-1">
+          <h3
+            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          >
+            OOB演示
+          </h3>
+        </div>
+        <div class="flex items-center gap-2 [&_svg]:size-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </div>
+      </a>
+      <a
+        href="/ch03_developing_endpoints/event.html"
+        class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
+      >
+        <div class="flex flex-1 flex-col gap-1">
+          <h3
+            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          >
+            事件触发
+          </h3>
+          <p
+            class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+          >
+            触发自定义事件
+          </p>
+        </div>
+        <div class="flex items-center gap-2 [&_svg]:size-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </div>
+      </a>
+      <a
+        href="/ch03_developing_endpoints/crud.html"
+        class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
+      >
+        <div class="flex flex-1 flex-col gap-1">
+          <h3
+            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          >
+            狗子管理（自定义事件）
+          </h3>
+          <p
+            class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+          >
+            通过自定义事件感知选中项
+          </p>
+        </div>
+        <div class="flex items-center gap-2 [&_svg]:size-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </div>
+      </a>
+      <a
+        href="/ch03_developing_endpoints/todo.html"
+        class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
+      >
+        <div class="flex flex-1 flex-col gap-1">
+          <h3
+            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          >
+            待办事项
+          </h3>
+          <p
+            class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+          >
+            通过自定义事件集成alpine实现待办事项管理
+          </p>
+        </div>
+        <div class="flex items-center gap-2 [&_svg]:size-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <script
+      src="https://lib.axum.eu.org/htmx/2.0.10/htmx.min.js"
+      defer
+    ></script>
+    <script
+      src="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.all.min.js"
+      defer
+    ></script>
+  </body>
+</html>

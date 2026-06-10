@@ -7,8 +7,11 @@ edition = "2024"
 anyhow = "1.0.102"
 arc-swap = "1.9.1"
 axum = "0.8.9"
+dotenv = "0.15.0"
 num_cpus = "1.17.0"
 serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.150"
+sqlx = { version = "0.8", features = ["runtime-tokio", "chrono", "sqlite", "uuid"] }
 tokio = { version = "1.52.3", features = ["rt-multi-thread", "macros", "time", "net", "signal"] }
 tower-http = { version = "0.6.11", features = ["fs"] }
 uuid = { version = "1.23.2", features = ["serde", "v7"] }

@@ -1,4 +1,4 @@
-use sdwah::router;
+use sdwah::{ch03_developing_endpoints, router};
 use tokio::net::TcpListener;
 
 fn main() -> anyhow::Result<()> {
@@ -11,8 +11,12 @@ fn main() -> anyhow::Result<()> {
 }
 
 async fn async_main() -> anyhow::Result<()> {
+    let pool = sqlx::sqlite::SqlitePoolOptions::new()
+        .connect("sqlite:todos.db")
+        .await?;
+    let state = ch03_developing_endpoints::Ch03State::new_arc(pool);
     let listener = TcpListener::bind("0.0.0.0:9527").await?;
-    let app = router::init();
+    let app = router::init(state);
     axum::serve(listener, app).await?;
     Ok(())
 }

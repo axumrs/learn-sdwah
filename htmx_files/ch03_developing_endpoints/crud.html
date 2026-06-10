@@ -15,34 +15,25 @@
       class="continer mx-auto w-sm left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 absolute space-y-6 p-6 bg-white rounded shadow"
     >
       <h1 class="text-xl font-bold">狗子</h1>
-      <form
-        autocomplete="off"
-        class="form grid gap-6"
-        hx-post="/api/ch01/dog"
-        hx-disabled-elt="#add-btn"
-        hx-target="table tbody"
-        hx-swap="afterbegin"
-        hx-on:htmx:after-request="this.reset()"
-      >
-        <div class="space-y-2">
-          <label for="name">名字</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div class="space-y-2">
-          <label for="name">品种</label>
-          <input type="text" id="breed" name="breed" required />
-        </div>
-
-        <div>
-          <button type="submit" class="btn" id="add-btn">添加</button>
-        </div>
-      </form>
+      <!-- hx-trigger="revealed,selection-change from:body" 表示：
+       当元素出现在屏幕视口中，或者整个页面的主体（body）上发生 selection-change 事件时，触发对应的网络请求：
+       * revealed（元素出现/显现）
+        当该元素第一次滚动进入浏览器视口（可见区域）时会被触发。常用于懒加载（Lazy Loading） 或无限滚动，确保只有当用户看到该部分内容时才去加载数据，从而节省服务器资源。
+       * selection-change（自定义事件）
+       * from:body（事件监听范围）
+         这是一个事件修饰符，告诉 HTMX 去哪里监听 selection-change 事件。这里设定为 from:body，意味着它会监听整个 <body> 上冒泡上来的该事件，而不仅仅局限于当前元素本身。
+      ** 可以分解为 `revealed` 和 `selection-change from:body`，即 `from:body` 用于修饰 `selection-change`，他们是一体的
+      -->
+      <div
+        hx-get="/api/ch03/form"
+        hx-trigger="revealed,selection-change from:body"
+      ></div>
 
       <div class="overflow-x-auto my-6">
         <table
           class="table"
           hx-trigger="revealed"
-          hx-get="/api/ch01/table-rows"
+          hx-get="/api/ch03/table-rows"
           hx-target="tbody"
         >
           <thead>

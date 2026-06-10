@@ -10,27 +10,33 @@
       href="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.min.css"
     />
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-gray-100" x-data="{ editingId: '' }" @click="editingId = ''">
     <main
       class="continer mx-auto w-sm left-1/2 -translate-x-1/2 -translate-y-1/2 top-1/2 absolute space-y-6 p-6 bg-white rounded shadow"
     >
-      <h1 class="text-xl font-bold">狗子</h1>
+      <h1 class="text-xl font-bold">待办事项</h1>
+      <div
+        hx-get="/api/ch03-todo/status"
+        hx-trigger="load, status-change from:body"
+      ></div>
       <form
         autocomplete="off"
         class="form grid gap-6"
-        hx-post="/api/ch01/dog"
-        hx-disabled-elt="#add-btn"
-        hx-target="table tbody"
+        hx-post="/api/ch03-todo"
+        hx-target="#todo-list"
         hx-swap="afterbegin"
+        hx-disabled-elt="#add-btn"
         hx-on:htmx:after-request="this.reset()"
+        x-data="{description:''}"
       >
-        <div class="space-y-2">
-          <label for="name">名字</label>
-          <input type="text" id="name" name="name" required />
-        </div>
-        <div class="space-y-2">
-          <label for="name">品种</label>
-          <input type="text" id="breed" name="breed" required />
+        <div>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            x-model="description"
+            required
+          />
         </div>
 
         <div>
@@ -38,27 +44,19 @@
         </div>
       </form>
 
-      <div class="overflow-x-auto my-6">
-        <table
-          class="table"
-          hx-trigger="revealed"
-          hx-get="/api/ch01/table-rows"
-          hx-target="tbody"
-        >
-          <thead>
-            <tr>
-              <th>名字</th>
-              <th>品牌</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+      <ul
+        id="todo-list"
+        hx-get="/api/ch03-todo"
+        hx-trigger="load"
+        class="space-y-3"
+      ></ul>
     </main>
-
     <script
       src="https://lib.axum.eu.org/htmx/2.0.10/htmx.min.js"
+      defer
+    ></script>
+    <script
+      src="https://lib.axum.eu.org/alpinejs/3.15.12/alpinejs.min.js"
       defer
     ></script>
     <script
