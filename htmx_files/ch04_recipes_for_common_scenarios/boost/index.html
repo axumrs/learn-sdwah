@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXUM: Server-Driven Web Apps with htmx</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body class="p-6">
+    <div class="flex flex-col">
+      <a href="anther.html">Without Boost</a>
+      <!-- boost
+      不会处理目标页面<link>(css)和<script> 
+      -->
+      <a href="anther.html" hx-boost="true">With Boost</a>
+    </div>
+
+    <script
+      src="https://lib.axum.eu.org/htmx/2.0.10/htmx.min.js"
+      defer
+    ></script>
+    <script
+      src="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.all.min.js"
+      defer
+    ></script>
+  </body>
+</html>

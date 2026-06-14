@@ -4,7 +4,7 @@ use axum::{
 };
 use tower_http::services::ServeDir;
 
-use crate::{ch01_jumping_in, ch03_developing_endpoints};
+use crate::{ch01_jumping_in, ch03_developing_endpoints, ch04_recipes_for_common_scenarios};
 
 pub fn init(state: ch03_developing_endpoints::Ch03ArcState) -> Router {
     Router::new()
@@ -14,12 +14,13 @@ pub fn init(state: ch03_developing_endpoints::Ch03ArcState) -> Router {
 
 fn api(state: ch03_developing_endpoints::Ch03ArcState) -> Router {
     Router::new()
-        .nest("/ch01", ch01_init())
-        .nest("/ch03", ch03_init())
-        .nest("/ch03-todo", ch03_todo_init(state))
+        .nest("/ch01", _init_ch01())
+        .nest("/ch03", _init_ch03())
+        .nest("/ch03-todo", _init_ch03_todo(state))
+        .nest("/ch04", _init_ch04())
 }
 
-fn ch01_init() -> Router {
+fn _init_ch01() -> Router {
     Router::new()
         .route("/version", get(ch01_jumping_in::version))
         .route("/dog", post(ch01_jumping_in::add_dog))
@@ -27,7 +28,7 @@ fn ch01_init() -> Router {
         .route("/dog/{id}", delete(ch01_jumping_in::del))
 }
 
-fn ch03_init() -> Router {
+fn _init_ch03() -> Router {
     Router::new()
         .route("/oob-demo", get(ch03_developing_endpoints::oob_demo))
         .route(
@@ -59,7 +60,7 @@ fn ch03_init() -> Router {
         )
 }
 
-fn ch03_todo_init(state: ch03_developing_endpoints::Ch03ArcState) -> Router {
+fn _init_ch03_todo(state: ch03_developing_endpoints::Ch03ArcState) -> Router {
     Router::new()
         .route(
             "/",
@@ -75,4 +76,26 @@ fn ch03_todo_init(state: ch03_developing_endpoints::Ch03ArcState) -> Router {
             patch(ch03_developing_endpoints::todo_completed),
         )
         .with_state(state)
+}
+
+fn _init_ch04() -> Router {
+    Router::new()
+        .route("/users", get(ch04_recipes_for_common_scenarios::user_list))
+        .route(
+            "/email-validate",
+            get(ch04_recipes_for_common_scenarios::email_validate),
+        )
+        .route(
+            "/password-validate",
+            get(ch04_recipes_for_common_scenarios::password_validate),
+        )
+        .route(
+            "/register-user",
+            post(ch04_recipes_for_common_scenarios::register_user),
+        )
+        .route(
+            "/search",
+            get(ch04_recipes_for_common_scenarios::search)
+                .post(ch04_recipes_for_common_scenarios::search),
+        )
 }

@@ -51,11 +51,6 @@ impl Todo {
     }
 }
 
-async fn get_pool() -> sqlx::Result<sqlx::SqlitePool> {
-    let url = std::env::var("DATABASE_URL").unwrap_or("sqlite:todos.db".into());
-    sqlx::sqlite::SqlitePoolOptions::new().connect(&url).await
-}
-
 pub struct Ch03State {
     pub pool: sqlx::SqlitePool,
 }

@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXUM: Server-Driven Web Apps with htmx</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.min.css"
+    />
+  </head>
+  <body class="p-6">
+    <div class="alert">
+      <h2>往下拉</h2>
+      <section>当滚动条拉到“用户列表”时，才会触发网络请求</section>
+    </div>
+    <!-- 虚假数据 -->
+    <div class="grid grid-cols-2 gap-4 my-3">
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+      <div
+        class="user-card"
+        style="
+          border: 1px solid #e0e0e0;
+          padding: 20px;
+          border-radius: 8px;
+
+          font-family: sans-serif;
+        "
+      >
+        <img
+          src="https://unsplash.com"
+          alt="Jane Doe"
+          style="
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+          "
+        />
+        <h2 style="margin: 10px 0 5px 0; font-size: 1.5rem; color: #333">
+          Jane Doe
+        </h2>
+        <p style="margin: 0 0 15px 0; color: #666; font-size: 0.9rem">
+          Senior Frontend Engineer
+        </p>
+        <p style="font-size: 0.95rem; color: #444; line-height: 1.4">
+          Passionate about building accessible web interfaces and component
+          design systems.
+        </p>
+        <div class="card-tags" style="margin-top: 15px">
+          <span
+            style="
+              background: #e1f5fe;
+              color: #0288d1;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >HTML5</span
+          >
+          <span
+            style="
+              background: #e8f5e9;
+              color: #388e3c;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+              margin-right: 5px;
+            "
+            >CSS3</span
+          >
+          <span
+            style="
+              background: #fff3e0;
+              color: #f57c00;
+              padding: 5px 10px;
+              border-radius: 4px;
+              font-size: 0.8rem;
+            "
+            >React</span
+          >
+        </div>
+      </div>
+    </div>
+    <!-- /虚假数据 -->
+
+    <h2 class="text-xl font-bold my-6">用户列表</h2>
+    <div hx-get="/api/ch04/users" hx-trigger="revealed" />
+
+    <script
+      src="https://lib.axum.eu.org/htmx/2.0.10/htmx.min.js"
+      defer
+    ></script>
+    <script
+      src="https://lib.axum.eu.org/basecoat/0.3.11/basecoat.all.min.js"
+      defer
+    ></script>
+  </body>
+</html>

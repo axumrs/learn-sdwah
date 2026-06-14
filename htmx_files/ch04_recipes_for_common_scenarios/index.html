@@ -13,14 +13,14 @@
   <body class="p-6">
     <div class="flex flex-col gap-6 continer mx-auto max-w-md">
       <a
-        href="/ch01_jumping_in"
+        href="/ch04_recipes_for_common_scenarios/boost"
         class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
       >
         <div class="flex flex-1 flex-col gap-1">
           <h3
             class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
           >
-            第一章
+            boost演示
           </h3>
         </div>
         <div class="flex items-center gap-2 [&_svg]:size-4">
@@ -40,15 +40,22 @@
         </div>
       </a>
       <a
-        href="/ch03_developing_endpoints"
+        href="/ch04_recipes_for_common_scenarios/lazy-loading.html"
         class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
       >
         <div class="flex flex-1 flex-col gap-1">
           <h3
             class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
           >
-            第三章
+            延迟加载
           </h3>
+          <p
+            class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+          >
+            通过
+            <code>hx-trigger="revealed"</code>
+            实现仅当滚动条让该元素出现在视图时才加载
+          </p>
         </div>
         <div class="flex items-center gap-2 [&_svg]:size-4">
           <svg
@@ -67,15 +74,52 @@
         </div>
       </a>
       <a
-        href="/ch04_recipes_for_common_scenarios"
+        href="/ch04_recipes_for_common_scenarios/input-validate.html"
         class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
       >
         <div class="flex flex-1 flex-col gap-1">
           <h3
             class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
           >
-            第四章
+            输入验证
           </h3>
+          <p
+            class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+          >
+            验证用户输入
+          </p>
+        </div>
+        <div class="flex items-center gap-2 [&_svg]:size-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        </div>
+      </a>
+      <a
+        href="/ch04_recipes_for_common_scenarios/active-search.html"
+        class="group/item flex items-center border text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-border p-4 gap-4"
+      >
+        <div class="flex flex-1 flex-col gap-1">
+          <h3
+            class="flex w-fit items-center gap-2 text-sm leading-snug font-medium"
+          >
+            实时搜索
+          </h3>
+          <p
+            class="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+          >
+            通过自定义事件集成alpine实现待办事项管理
+          </p>
         </div>
         <div class="flex items-center gap-2 [&_svg]:size-4">
           <svg
